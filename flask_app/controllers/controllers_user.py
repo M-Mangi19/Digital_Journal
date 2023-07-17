@@ -22,7 +22,7 @@ def new_user():
             'id': session['user_id']
         }
         user = User.get_one(data)
-        return render_template('dashboard.html', user = user)
+        return render_template('homepage.html', user = user)
 
 
 #Register
@@ -43,7 +43,7 @@ def register_user():
             return redirect('/')
         else:
             session['user_id'] = id
-            return redirect('/dashboard')
+            return redirect('/homepage')
 
 #Login
 @app.route('/login/user', methods=["POST"])
@@ -62,7 +62,7 @@ def login_user():
         return redirect('/')
     else:
         session['user_id'] = user.id
-        return redirect ('/dashboard')
+        return redirect ('/homepage')
 
 #Logout
 @app.route('/logout')

@@ -6,3 +6,14 @@ from flask_app.models.models_favorite import Favorite
 from flask_bcrypt import Bcrypt
 
 bcrypt = Bcrypt(app)
+
+
+#Homepage
+@app.route('/homepage')
+def homepage():
+    return render_template('homepage.html')
+
+#Create Journal Page
+@app.route('/create/entry')
+def create_entry():
+    return render_template('journal_entry.html')
