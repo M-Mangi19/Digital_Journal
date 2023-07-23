@@ -7,7 +7,6 @@ from flask_bcrypt import Bcrypt
 
 bcrypt = Bcrypt(app)
 
-#Don't forget to add in protected routes (must be logged in to use)
 
 #Homepage
 @app.route('/homepage')
@@ -64,10 +63,6 @@ def update(entry_id):
         return redirect('/')
     if not Entry.entry_validator(request.form):
         return redirect('/create/entry')
-        # could not get it to redirect back to the edit page.
-        # Wasn't sure how to grab the <int:show_id> in the redirect
-        # so i just sent it to the create/show page displaying the validator it was
-        # not fulfilling with in the edit page
     Entry.update(request.form, entry_id)
     return redirect('/create/entry')
 
