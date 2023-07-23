@@ -14,7 +14,7 @@ class Entry:
         self.date = data['date']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
-        self.user = data['user']
+        self.writer = None
 
 #Create
     @classmethod
@@ -44,12 +44,22 @@ class Entry:
         print(results)
         return cls(results[0])
 
+#Descending Order
+    @classmethod
+    def most_recent(cls):
+        query = "SELECT * FROM entries ORDER BY id DESC;"
+        results = connectToMySQL(db).query_db(query)
+        entries = []
+        for entry in results:
+            entries.append(cls(entry))
+            print(entry, end=', ')
+        return entries
 
 
 #Update
     @classmethod
     def update(cls, form_data, entry_id):
-        query = f"UPDATE entries SET content=%(content)s, date=%(date)s WHERE id = {show_id}"
+        query = f"UPDATE entries SET content=%(content)s, date=%(date)s WHERE id = {entry_id}"
         return connectToMySQL(db).query_db(query, form_data)
 #Delete
     @classmethod
@@ -61,6 +71,26 @@ class Entry:
 
 
 #One to Many
+    @classmethod
+    def get_all_entries_with_user(cls):
+        query = "SELECT * FROM entries JOIN users ON entries.user_id = users.id;"
+        results = connectToMySQL(db).query_db(query)
+        writers = []
+        for writer in results:
+            writer_entry = cls(writer)
+            one_entry_writer_info = {
+                "id": writer['users.id'],
+                "first_name": writer['first_name'],
+                "last_name": writer['last_name'],
+                "email": writer['email'],
+                "password": writer['password'],
+                "created_at":writer['users.created_at'],
+                "updated_at": writer['users.updated_at']
+            }
+            writer_entry.creator = User(one_entry_writer_info)
+            writers.append(writer_entry)
+        return writers
+
 
 #One to Many
 

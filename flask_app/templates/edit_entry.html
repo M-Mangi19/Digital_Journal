@@ -17,7 +17,8 @@
         </div>
         <h1 class="header text-center">Edit Journal Entry</h1>
         <div class="form-group d-flex justify-content-around">
-            <form action="/update/entry/{{entry.id}}" method="POST" class="col-4 bg-light p-4 my-5 text-success">
+            <form action="/update/entry/{{entry.id}}" method="POST" class="col-10 bg-light p-5 my-5 text-success">
+                <input type="hidden" value="{{entry.id}}">
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         {% for message in messages %}
@@ -27,11 +28,11 @@
                 {% endwith %}
                 <div class="row mb-3">
                     <label for="date">Date:</label>
-                    <input type="date" name="date">
+                    <input type="date" name="date" value="{{entry.date}}">
                 </div>
                 <div class="row mb-3">
                     <label for="content" class="form-label">New Entry:</label>
-                    <textarea name="content" id="" cols="20" rows="5" class="form-control"></textarea>
+                    <textarea name="content" id="" cols="30" rows="8" class="form-control">{{entry.content}}</textarea>
                 </div>
                 <button type="submit" class="btn btn-success mt-3">Edit Entry</button>
             </form>

@@ -30,7 +30,9 @@ def create_entry():
             'id' : session['user_id']
         }
         user = User.get_one(user_data)
-        return render_template('journal_entry.html', user = user)
+        entries = Entry.get_all_entries_with_user()
+        Entry.most_recent()
+        return render_template('journal_entry.html', user = user, entries = entries)
 
 #Create Entry
 @app.route('/create/new_entry', methods=['POST'])

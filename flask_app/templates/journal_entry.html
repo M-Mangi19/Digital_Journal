@@ -8,15 +8,15 @@
 </head>
 <body>
     <div class="container">
-        <div class="header d-flex justify-content-between">
-            <a href="/homepage">Home</a>
-                <a href="">Favorites</a>
-                    <a href="">Calendar</a>
-                        <a href="/logout">Logout</a>
+        <div class="header text-bg-success d-flex justify-content-between">
+            <a class="btn btn-success" href="/homepage">Home</a>
+                <a class="btn btn-success" href="">Favorites</a>
+                    <a class="btn btn-success" href="">Calendar</a>
+                        <a class="btn btn-success" href="/logout">Logout</a>
         </div>
         <h1 class="header text-center">New Journal Entry</h1>
         <div class="form-group d-flex justify-content-around">
-            <form action="/create/new_entry" method="POST" class="col-4 bg-light p-4 my-5 text-success">
+            <form action="/create/new_entry" method="POST" class="col-10 bg-light p-5 my-5 text-success">
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         {% for message in messages %}
@@ -30,20 +30,25 @@
                 </div>
                 <div class="row mb-3">
                     <label for="content" class="form-label">New Entry:</label>
-                    <textarea name="content" id="" cols="20" rows="5" class="form-control"></textarea>
+                    <textarea name="content" id="" cols="30" rows="8" class="form-control"></textarea>
                 </div>
                 <button type="submit" class="btn btn-success mt-3">Add Entry</button>
             </form>
         </div>
         <hr>
             <h2>{{user.first_name}}'s Journal</h2>
-            {% for entry in entries %}
-                <h3>Date: {{entry.date.strftime("%b %d %Y")}}</h3>
-                <p>{{entry.content}}</p>
-                <a href="/edit/{{entry_id}}">Edit</a>
-                <a href="/delete/{{entry_id}}">Delete</a>
-            {% endfor %}
         <hr>
+            {% for entry in entries %}
+            <div class="d-flex justify-content-between text-bg-success p-3">
+                <h3>Date: {{entry.date.strftime("%b %d %Y")}}</h3>
+            </div>
+            <p>{{entry.content}}</p>
+            <div class="d-flex justify-content-betweem position-relative">
+                    <a class="btn btn-warning" href="/edit/{{entry.id}}">Edit</a>
+                    | <a class="btn btn-danger" href="/delete/{{entry.id}}">Delete</a>
+                <hr>
+            </div>
+            {% endfor %}
     </div>
 </body>
 </html>
