@@ -44,16 +44,6 @@ class Entry:
         print(results)
         return cls(results[0])
 
-# #Descending Order
-#     @classmethod
-#     def most_recent(cls):
-#         query = "SELECT * FROM entries ORDER BY id DESC;"
-#         results = connectToMySQL(db).query_db(query)
-#         entries = []
-#         for entry in results:
-#             entries.append(cls(entry))
-#         return entries
-
 
 #Update
     @classmethod
