@@ -44,16 +44,15 @@ class Entry:
         print(results)
         return cls(results[0])
 
-#Descending Order
-    @classmethod
-    def most_recent(cls):
-        query = "SELECT * FROM entries ORDER BY id DESC;"
-        results = connectToMySQL(db).query_db(query)
-        entries = []
-        for entry in results:
-            entries.append(cls(entry))
-            print(entry, end=', ')
-        return entries
+# #Descending Order
+#     @classmethod
+#     def most_recent(cls):
+#         query = "SELECT * FROM entries ORDER BY id DESC;"
+#         results = connectToMySQL(db).query_db(query)
+#         entries = []
+#         for entry in results:
+#             entries.append(cls(entry))
+#         return entries
 
 
 #Update
@@ -73,7 +72,7 @@ class Entry:
 #One to Many
     @classmethod
     def get_all_entries_with_user(cls):
-        query = "SELECT * FROM entries JOIN users ON entries.user_id = users.id;"
+        query = "SELECT * FROM entries JOIN users ON entries.user_id = users.id ORDER BY entries.id DESC"
         results = connectToMySQL(db).query_db(query)
         writers = []
         for writer in results:

@@ -31,7 +31,6 @@ def create_entry():
         }
         user = User.get_one(user_data)
         entries = Entry.get_all_entries_with_user()
-        Entry.most_recent()
         return render_template('journal_entry.html', user = user, entries = entries)
 
 #Create Entry
