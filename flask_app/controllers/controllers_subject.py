@@ -34,7 +34,6 @@ def create_subject():
         return render_template('create_subject.html')
 
 
-
 #Create Subject
 @app.route('/create/new_subject', methods=['POST'])
 def create_new_subject():
@@ -47,7 +46,24 @@ def create_new_subject():
     Subject.create(data)
     return redirect('/subject')
 
-#Edit page
+#Favorite list Dashboard
+@app.route('/subject/list/<int:subject_id>')
+def show_subject(subject_id):
+    data = {
+        "id" : subject_id
+    }
+    subject = Subject.get_one(data)
+    return render_template('favorite_dashboard.html', subject = subject)
+#     # dojo = Dojo.get_dojo_with_ninjas(data)
+
+# @app.route('/dojo/<int:id>')
+# def show_dojo(id):
+#     data = {
+#         "id" : id
+#     }
+#     return render_template('dojo.html', dojo = Dojo.get_dojo_with_ninjas(data))
+
+# #Edit page
 @app.route('/edit/subject/<int:subject_id>')
 def edit_subject(subject_id):
     if 'user_id' not in session:

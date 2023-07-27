@@ -10,11 +10,12 @@
     <div class="container">
         <div class="header text-bg-success d-flex justify-content-between">
             <a class="btn btn-success" href="/homepage">Home</a>
-                <a class="btn btn-success" href="/subject">Favorites</a>
-                    <!-- <a class="btn btn-success" href="">Calendar</a> -->
-                        <a class="btn btn-success" href="/logout">Logout</a>
+                <a class="btn btn-success" href="/create/entry">My Journal</a>
+                    <a class="btn btn-success" href="/subject">Favorites</a>
+                        <!-- <a class="btn btn-success" href="">Calendar</a> -->
+                            <a class="btn btn-success" href="/logout">Logout</a>
         </div>
-        <h1 class="header text-center">New Journal Entry</h1>
+        <h1 class="header text-center">New Subject</h1>
         <div class="form-group d-flex justify-content-around">
             <form action="/create/new_subject" method="POST" class="col-5 bg-light p-5 my-5 text-success">
                 {% with messages = get_flashed_messages() %}

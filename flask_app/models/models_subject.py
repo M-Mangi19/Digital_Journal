@@ -14,7 +14,7 @@ class Subject:
         self.hobby = data['hobby']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
-        self.creator = None
+        self.author = None
 
 #Create
     @classmethod

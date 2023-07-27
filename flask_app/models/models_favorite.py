@@ -15,18 +15,18 @@ class Favorite:
     def __init__(self,data):
         self.id = data['id']
         self.title = data['title']
-        self.item = data['item']
+        self.creator = data['creator']
         self.description = data['description']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
-
+        self.rogue = None
 
 #Create
     @classmethod
     def create(cls, data):
         query = """
-                INSERT INTO favorites (title, item, description, user_id)
-                VALUE (%(title)s, %(item)s,  %(description)s, %(user_id)s);
+                INSERT INTO favorites (title, creator, description, user_id)
+                VALUE (%(title)s, %(creator)s,  %(description)s, %(user_id)s);
                 """
         results = connectToMySQL(db).query_db(query, data)
         return results
@@ -53,7 +53,7 @@ class Favorite:
 #Update
     @classmethod
     def update(cls, form_data, favorite_id):
-        query = f"UPDATE favorites SET title=%(title)s, item=%(item)s, description=%(description)s WHERE id = {favorite_id}"
+        query = f"UPDATE favorites SET title=%(title)s, creator=%(creator)s, description=%(description)s WHERE id = {favorite_id}"
         return connectToMySQL(db).query_db(query, form_data)
 #Delete
     @classmethod
@@ -64,26 +64,23 @@ class Favorite:
         return results
 
 
-# #One to Many
-#     @classmethod
-#     def get_all_entries_with_user(cls):
-#         query = "SELECT * FROM entries JOIN users ON entries.user_id = users.id ORDER BY entries.id DESC"
-#         results = connectToMySQL(db).query_db(query)
-#         writers = []
-#         for writer in results:
-#             writer_entry = cls(writer)
-#             one_entry_writer_info = {
-#                 "id": writer['users.id'],
-#                 "first_name": writer['first_name'],
-#                 "last_name": writer['last_name'],
-#                 "email": writer['email'],
-#                 "password": writer['password'],
-#                 "created_at":writer['users.created_at'],
-#                 "updated_at": writer['users.updated_at']
-#             }
-#             writer_entry.creator = User(one_entry_writer_info)
-#             writers.append(writer_entry)
-#         return writers
+#One to Many
+    @classmethod
+    def get_all_favorites_with_subject(cls):
+        query = "SELECT * FROM favorites JOIN subjects ON favorites.subject_id = subjects.id"
+        results = connectToMySQL(db).query_db(query)
+        fans = []
+        for fan in results:
+            fan_favorite = cls(fan)
+            one_favorite_fan_info = {
+                "id": fan ['subjects.id'],
+                "hobby": fan ['hobby'],
+                "created_at":fan ['subjects.created_at'],
+                "updated_at": fan ['subjects.updated_at']
+            }
+            fan_favorite.rogue = Subject(one_favorite_fan_info)
+            fans.append(fan_favorite)
+        return writers
 
 
 #One to Many
@@ -95,10 +92,10 @@ class Favorite:
             if len(data['title']) <= 0:
                 flash("Title is required")
                 is_valid = False
-            if len(data['item']) <= 0:
+            if len(data['creator']) <= 0:
                 flash("Requires content")
                 is_valid = False
-            if len(data['description']) < 3:
+            if len(data['description']) <= 0:
                 flash("Must have a description")
                 is_valid = False
             return is_valid

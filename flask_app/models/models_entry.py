@@ -14,7 +14,7 @@ class Entry:
         self.date = data['date']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
-        self.writer = None
+        self.creator = None
 
 #Create
     @classmethod
