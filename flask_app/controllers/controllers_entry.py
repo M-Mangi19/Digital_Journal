@@ -86,7 +86,7 @@ def view(entry_id):
 
 #Delete
 @app.route('/delete/<int:entry_id>')
-def delete(entry_id):
+def delete_entry(entry_id):
     if 'user_id' not in session:
         return redirect('/')
     Entry.delete(entry_id)

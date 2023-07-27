@@ -45,22 +45,22 @@ def create_new_subject():
         'user_id' : session['user_id']
     }
     Subject.create(data)
-    return redirect('/create/subject')
+    return redirect('/subject')
 
 #Edit page
-@app.route('/edit/<int:subject_id>')
+@app.route('/edit/subject/<int:subject_id>')
 def edit_subject(subject_id):
     if 'user_id' not in session:
         return redirect('/')
     data = {
         'id' : subject_id
     }
-    # entry = Entry.get_one(data)
-    return render_template('edit_subject.html')
+    subject = Subject.get_one(data)
+    return render_template('edit_subject.html', subject = subject)
 
 # Update
 @app.route('/update/subject/<int:subject_id>', methods=['POST'])
-def update_subject(subject_validator_id):
+def update_subject(subject_id):
     if 'user_id' not in session:
         return redirect('/')
     if not Subject.subject_validator(request.form):
@@ -68,3 +68,10 @@ def update_subject(subject_validator_id):
     Subject.update(request.form, subject_id)
     return redirect('/subject')
 
+#Delete
+@app.route('/delete/subject/<int:subject_id>')
+def delete_subject(subject_id):
+    if 'user_id' not in session:
+        return redirect('/')
+    Subject.delete(subject_id)
+    return redirect('/subject')

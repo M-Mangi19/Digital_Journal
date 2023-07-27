@@ -48,7 +48,7 @@ class Subject:
 #Update
     @classmethod
     def update(cls, form_data, subject_id):
-        query = f"UPDATE sujects SET hobby=%(hobby)s WHERE id = {subject_id}"
+        query = f"UPDATE subjects SET hobby=%(hobby)s WHERE id = {subject_id}"
         return connectToMySQL(db).query_db(query, form_data)
 #Delete
     @classmethod
