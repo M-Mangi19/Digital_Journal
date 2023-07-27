@@ -7,3 +7,26 @@ from flask_app.models.models_subject import Subject
 from flask_bcrypt import Bcrypt
 
 bcrypt = Bcrypt(app)
+
+
+#Dashboard
+
+
+#Create Item Page
+
+
+#Create Item
+
+
+#Edit page
+
+
+#Update
+
+
+#View
+
+
+#Delete
+
+
