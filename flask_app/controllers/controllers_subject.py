@@ -54,14 +54,7 @@ def show_subject(subject_id):
     }
     subject = Subject.get_one(data)
     return render_template('favorite_dashboard.html', subject = subject)
-#     # dojo = Dojo.get_dojo_with_ninjas(data)
 
-# @app.route('/dojo/<int:id>')
-# def show_dojo(id):
-#     data = {
-#         "id" : id
-#     }
-#     return render_template('dojo.html', dojo = Dojo.get_dojo_with_ninjas(data))
 
 # #Edit page
 @app.route('/edit/subject/<int:subject_id>')
