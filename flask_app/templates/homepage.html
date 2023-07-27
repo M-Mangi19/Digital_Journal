@@ -7,13 +7,18 @@
     <title>Home Page</title>
 </head>
 <body>
-    <div class="container text-center">
+    <div class="container text-center ">
         <h1>{{user.first_name}}'s Journal</h1>
-            <div class="row align-items-center">
-                <a href="/create/entry">JOURNAL ENTRY</a>
-            </div>
-            <div class="row align-items-center">
-                <a href="/logout">Logout</a>
+            <div class="card col-7 bg-dark p-4 my-5 mx-auto">
+                <div class="row mb-5 align-items-center">
+                    <a class="btn btn-info" href="/create/entry">JOURNAL ENTRY</a>
+                </div>
+                <div class="row mb-5 align-items-center">
+                    <a class="btn btn-secondary" href="/subject">FAVORITES</a>
+                </div>
+                <div class="row mb-2 align-items-center">
+                    <a href="/logout">Logout</a>
+                </div>
             </div>
     </div>
 </body>
