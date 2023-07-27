@@ -31,9 +31,6 @@ def create_subject():
         user_data = {
             'id' : session['user_id']
         }
-        user = User.get_one(user_data)
-        subjects = Subject.get_all_subjects_with_user()
-        # Subject.get_all()
         return render_template('create_subject.html')
 
 
