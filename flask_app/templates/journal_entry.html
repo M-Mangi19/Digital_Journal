@@ -40,12 +40,14 @@
         <hr>
             {% for entry in entries %}
             <div class="d-flex justify-content-between text-bg-success p-3">
+            {% if entry.creator.id == session.user_id %}
                 <h3>Date: {{entry.date.strftime("%b %d %Y")}}</h3>
             </div>
             <p>{{entry.content}}</p>
             <div class="buttons mb-5 d-flex justify-content-betweem position-relative">
                     <a class="btn btn-warning" href="/edit/{{entry.id}}">Edit</a>
                     | <a class="btn btn-danger" href="/delete/{{entry.id}}">Delete</a>
+            {% endif %}
             </div>
                 <hr>
             {% endfor %}
