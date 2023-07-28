@@ -17,6 +17,7 @@
         <h1 class="header text-center">Favorites Archive</h1>
         <div class="card col-7 bg-dark p-4 my-5 mx-auto text-center">>
             {% for subject in subjects %}
+                {% if subject.author.id == session.user_id %}
                 <div class="row mb-2 align-items-center">
                         <a class="btn btn-info" href="/subject/list/{{subject.id}}">{{subject.hobby}}</a>
                 </div>
@@ -25,6 +26,7 @@
                     | <a href="/delete/subject/{{subject.id}}">Delete</a>
                 </div>
                 <hr>
+                {% endif %}
             {% endfor %}
                 <div class="row align-items-center">
                     <a href="/create/subject">Create New Subject</a>
