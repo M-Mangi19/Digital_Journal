@@ -10,6 +10,7 @@ class Entry:
 
     def __init__(self,data):
         self.id = data['id']
+        self.heading = data['heading']
         self.content = data['content']
         self.date = data['date']
         self.created_at = data['created_at']

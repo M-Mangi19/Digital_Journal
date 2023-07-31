@@ -15,5 +15,33 @@
                     <!-- <a class="btn btn-success" href="">Calendar</a> -->
                         <a class="btn btn-success" href="/logout">Logout</a>
         </div>
+        <h1 class="header text-center">{{user.first_name}}'s Journal Archive</h1>
+        <div class="card-body">
+            <table class="table table-info table-striped">
+
+                <thead>
+                    <tr>
+                        <th>Header</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in entries %}
+                        {% if entry.creator.id == session.user_id %}
+                    <tr>
+                        <td>{{entry.heading}}</td>
+                        <td>{{entry.date.strftime("%b %d %Y")}}</td>
+                        <td><a href="/edit/{{entry.id}}">Edit</a> |
+                            | <a href="/delete/{{entry.id}}">Delete</a></td>
+                    </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-between">
+                <a href="/create/entry">Create New Journal Entry</a>
+            </div>
+        </div>
 </body>
 </html>

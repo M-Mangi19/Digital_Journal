@@ -27,7 +27,12 @@ def journal_dashboard():
     if 'user_id' not in session:
         return redirect('/')
     else:
-        return render_template('journal_dashboard.html')
+        data = {
+            'id' : session['user_id']
+        }
+        user = User.get_one(data)
+        entries = Entry.get_all_entries_with_user()
+        return render_template('journal_dashboard.html', user = user, entries = entries)
 
 #Create Entry Page
 @app.route('/create/entry')
