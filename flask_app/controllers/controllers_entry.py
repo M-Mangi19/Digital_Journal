@@ -21,6 +21,14 @@ def homepage():
         user = User.get_one(data)
         return render_template('homepage.html', user = user)
 
+#Dashboard
+@app.route('/journal_dashboard')
+def journal_dashboard():
+    if 'user_id' not in session:
+        return redirect('/')
+    else:
+        return render_template('journal_dashboard.html')
+
 #Create Entry Page
 @app.route('/create/entry')
 def create_entry():
@@ -32,7 +40,7 @@ def create_entry():
         }
         user = User.get_one(user_data)
         entries = Entry.get_all_entries_with_user()
-        return render_template('journal_entry.html', user = user, entries = entries)
+        return render_template('create_journal_entry.html', user = user, entries = entries)
 
 #Create Entry
 @app.route('/create/new_entry', methods=['POST'])
