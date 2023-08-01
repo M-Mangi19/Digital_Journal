@@ -21,8 +21,8 @@ class Entry:
     @classmethod
     def create(cls, data):
         query = """
-                INSERT INTO entries (content, date, user_id)
-                VALUE (%(content)s, %(date)s, %(user_id)s);
+                INSERT INTO entries (heading, content, date, user_id)
+                VALUE (%(heading)s, %(content)s, %(date)s, %(user_id)s);
                 """
         results = connectToMySQL(db).query_db(query, data)
         return results
@@ -49,7 +49,7 @@ class Entry:
 #Update
     @classmethod
     def update(cls, form_data, entry_id):
-        query = f"UPDATE entries SET content=%(content)s, date=%(date)s WHERE id = {entry_id}"
+        query = f"UPDATE entries SET heading=%(heading)s, content=%(content)s, date=%(date)s WHERE id = {entry_id}"
         return connectToMySQL(db).query_db(query, form_data)
 #Delete
     @classmethod
@@ -88,6 +88,9 @@ class Entry:
     @staticmethod
     def entry_validator(data):
             is_valid = True
+            if len(data['heading']) <= 0:
+                flash("Must have a heading (Day of the week, title, etc...)")
+                is_valid = False
             if len(data['content']) <= 0:
                 flash("Must have content")
                 is_valid = False
