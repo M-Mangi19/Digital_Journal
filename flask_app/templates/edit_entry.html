@@ -28,6 +28,10 @@
                     {% endif %}
                 {% endwith %}
                 <div class="row mb-3">
+                    <label for="heading">Header:</label>
+                    <input type="heading" name="heading" value="{{entry.heading}}">
+                </div>
+                <div class="row mb-3">
                     <label for="date">Date:</label>
                     <input type="date" name="date" value="{{entry.date}}">
                 </div>

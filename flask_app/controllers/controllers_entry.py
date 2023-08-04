@@ -53,6 +53,7 @@ def create_new_entry():
     if not Entry.entry_validator(request.form):
         return redirect('/create/entry')
     data = {
+        'heading' : request.form['heading'],
         'content' : request.form['content'],
         'date' : request.form['date'],
         'user_id' : session['user_id']
