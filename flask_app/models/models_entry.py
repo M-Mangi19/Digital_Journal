@@ -83,6 +83,9 @@ class Entry:
 
 
 #One to Many
+    @classmethod
+    def get_user_with_entries(cls):
+        pass
 
 #Create and Edit Validators
     @staticmethod

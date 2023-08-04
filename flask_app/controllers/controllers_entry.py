@@ -94,8 +94,8 @@ def view(entry_id):
         'id' : entry_id
     }
     user = User.get_one(data)
-    # entries = Entry.get_user_with_entry(entry_data)
-    return render_template('view.html', user = user)
+    entries = Entry.get_user_with_entry(entry_data)
+    return render_template('view_journal.html', user = user)
 
 
 #Delete
