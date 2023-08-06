@@ -84,8 +84,21 @@ class Entry:
 
 #One to Many
     @classmethod
-    def get_user_with_entries(cls):
-        pass
+    def get_user_with_entries(cls, data):
+        query = "SELECT * FROM entries JOIN users ON users.id = entries.user_id WHERE user.id = %(id)s"
+        results = connectToMySQL(db).query_db(query, data)
+        entry = cls(results[0])
+        entry_data = {
+            "id":  results[0]['users.id'],
+            "first_name":  results[0]['first_name'],
+            "last_name":  results[0]['last_name'],
+            "email": results[0]['email'],
+            "password":  results[0]['password'],
+            "created_at":  results[0]['users.created_at'],
+            "updated_at":  results[0]['users.updated_at']
+        }
+        entry.page = User(entry_data)
+        return entry
 
 #Create and Edit Validators
     @staticmethod
