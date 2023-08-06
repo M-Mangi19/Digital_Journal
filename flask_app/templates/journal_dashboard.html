@@ -32,8 +32,9 @@
                     <tr>
                         <td>{{entry.heading}}</td>
                         <td>{{entry.date.strftime("%b %d %Y")}}</td>
-                        <td><a href="/edit/{{entry.id}}">Edit</a> |
-                            | <a href="/delete/{{entry.id}}">Delete</a></td>
+                        <td><a href="/view/entry/{{entry.id}}">View</a> |
+                                <a href="/edit/{{entry.id}}">Edit</a> |
+                                | <a href="/delete/{{entry.id}}">Delete</a></td>
                     </tr>
                         {% endif %}
                     {% endfor %}

@@ -9,21 +9,18 @@
 <body>
     <div class="container">
         <div class="d-flex align-items-center justify-content-between">
-            <h1>Welcome, {{user.first_name}} {{user.last_name}}</h1>
+            <!-- <h1>Welcome, {{user.first_name}} {{user.last_name}}</h1> -->
             <div>
                 <!-- <a href="/dashboard">Back to Journal Archive</a> | <a href="/logout">logout</a> -->
             </div>
         </div>
         <div class="d-flex align-items-center justify-content-between">
-                <h2>{{entries.heading}}</h2>
-                <div>
-                    <h3>Posted by:{{entries.page.first_name}}</h3>
-                </div>
+                <h2>{{entry.heading}}</h2>
         </div>
         <div class="">
-                <p>Heading:  {{entries.heading}}</p>
-                <p>Date:  {{entries.date.strftime("%b %d %Y")}}</p>
-                <p>Entry:  {{entrie.content}}</p>
+                <p>Heading:  {{entry.heading}}</p>
+                <p>Date:  {{entry.date.strftime("%b %d %Y")}}</p>
+                <p>Entry:  {{entry.content}}</p>
         </div>
     </div>
 </body>

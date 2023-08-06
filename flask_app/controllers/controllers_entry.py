@@ -88,14 +88,14 @@ def view(entry_id):
     if 'user_id' not in session:
         return redirect('/')
     data = {
-        'id' : session['user_id']
-    }
-    entry_data = {
         'id' : entry_id
     }
-    user = User.get_one(data)
-    entries = Entry.get_user_with_entry(entry_data)
-    return render_template('view_journal.html', user = user)
+    user_data = {
+            'id' : session['user_id']
+    }
+    user = User.get_one(user_data)
+    entry = Entry.get_one(data)
+    return render_template('view_journal.html', entry = entry, user = user)
 
 
 #Delete
