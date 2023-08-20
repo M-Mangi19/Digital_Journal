@@ -7,6 +7,45 @@
     <title>Registration Page</title>
 </head>
 <body>
-    
+    <div class="container content-center">
+        <h1 class="text-center text-info">DIGITAL JOURNAL</h1>
+        <!-- Register Form -->
+        <div class="text-center text-info">
+            <form action="/register/user" method="POST" class="col-4 bg-dark p-4 my-5 text-warning">
+                {% with messages = get_flashed_messages(category_filter=['register']) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <h1 class="text-center text-warning">Register</h1>
+                    <div class="form-group">
+                        <label for="first_name" class="form-label text-warning">First Name</label>
+                        <input type="text" name="first_name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name"class="form-label text-warning">Last Name</label>
+                        <input type="text" name="last_name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label text-warning">Email</label>
+                        <input type="email" name="email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="form-label text-warning">Password</label>
+                        <input type="password" name="password" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm_password" class="form-label text-warning">Confirm Password</label>
+                        <input type="password" name="confirm_password" class="form-control">
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-warning mt-3">Submit</button>
+                    </div>
+                <a href="/login">already have an account? login here</a>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

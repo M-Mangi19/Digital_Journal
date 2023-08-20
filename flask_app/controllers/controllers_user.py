@@ -8,10 +8,16 @@ from flask_bcrypt import Bcrypt
 
 bcrypt = Bcrypt(app)
 
-#Login-route
+#Register-route
 @app.route('/')
+def register():
+    return render_template('register.html')
+
+#Login-route
+@app.route('/login')
 def login():
     return render_template('login.html')
+
 
 #New User
 @app.route('/new_user')
